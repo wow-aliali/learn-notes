@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <ul id="v-ul">
+            <!-- v-if： 根据条件判断是否加载，可以减轻服务器的压力，在需要时加载。 -->
+            <!-- v-show：根据条件调整css dispaly属性，可以使客户端操作更加流畅。 -->
+
+            <li v-if="isLogin">你好, 阿狸</li>
+            <li v-else>请登录</li>
+
+            <li v-if="arr.length">加载新闻api</li>
+            <li v-else>没有加载到任何新闻</li>
+
+            <li v-show="isLogin">你好, 阿里</li>
+        </ul>
+    </body>
+
+    <script>
+        var vm = new Vue({
+            el: '#v-ul',
+            data: {
+                isLogin: true,
+                arr: []
+            }
+        });
+    </script>
+</html>

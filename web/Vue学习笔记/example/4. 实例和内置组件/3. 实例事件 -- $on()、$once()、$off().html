@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+    <script src="../../assets/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <!-- 实例事件就是在构造器外部写一个调用构造器内部的方法。这样写的好处是可以通过这种写法在构造器外部调用构造器内部的数据 -->
+
+    <div id="aliali">
+        <p v-text="num"></p>
+        <p><button @click="add">加加加</button></p>
+    </div>
+
+    <p><button onclick="reduce()">减减减</button></p>
+    <p><button onclick="reduceOnce()">只减一次</button></p>
+    <p><button onclick="off()">移除reduce事件</button></p>
+
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#aliali',
+        data: {
+            num: 10
+        },
+        methods: {
+            add: function (){
+                this.num += 10;
+            }
+        }
+    });
+
+    // $on 在构造器外部添加事件, 第一个参数为事件名, 事件可以由vm.$emit触发
+    // $emit 触发当前实例上的事件, 第一个参数为事件名, 其余参数都会传给监听器回调
+    vm.$on('reduce', function (){
+        this.num -= 10;
+    });
+    function reduce(){
+        vm.$emit('reduce');
+    }
+
+    // $once 监听一个自定义事件，但是只触发一次，在第一次触发之后移除监听器
+    vm.$once('reduceOnce', function (){
+        this.num -= 5;
+    });
+    function reduceOnce(){
+        vm.$emit('reduceOnce');
+    }
+
+    // $off 移除自定义事件监听器 (如果没有提供参数，则移除所有的事件监听器)
+    function off(){
+        vm.$off('reduce');
+    }
+</script>
+
+</html>

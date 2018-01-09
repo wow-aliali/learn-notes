@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- props选项就是设置和获取标签上的属性值的 -->
+
+    <div id="deng">
+        <aliali where="广东" birth-day="1997" v-bind:age="age"></aliali>
+        <!-- 把构造器中data的值传递给components，我们需用v-bind进行绑定 -->
+    </div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            age: 20
+        },
+        components: {
+            'aliali': {
+                template: `
+                    <h2 style="color: violet">
+                        deng comes from {{ where }}   // 在组件的模板里读出属性值只需要用插值的形式{{ xx }}
+                        <br>
+                        deng'birthday is {{ birthDay }}   // 属性名带'-'的需要转为小驼峰命名
+                        <br>
+                        deng'age is {{ age }}
+                    </h2>
+                `,
+                props: ['where', 'birthDay', 'age']
+            }
+        }
+    });
+</script>
+
+</html>

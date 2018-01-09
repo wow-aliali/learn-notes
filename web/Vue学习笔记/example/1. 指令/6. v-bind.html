@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+        <style>
+            .classA{
+                color: royalblue;
+            }
+            .classB{
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="v-ul">
+            <!-- v-bind 是处理HTML中的标签属性的，例如<img>是一个标签，我们绑定<img>上的src进行动态赋值 -->
+
+            <h3>绑定链接路径 : </h3>
+            <p><img v-bind:src="imgSrc" alt="" width="300" height="300"></p>
+            <p><a :href="webSrc">Vue官网</a></p>  <!-- :href为简写形式 -->
+            <hr>
+
+            <li v-bind:class="classA">绑定class</li>
+            <li :class="[classA, classB]">绑定class数组(多个class)</li>
+            <li :class="{classA:isTrue}">绑定class 真假判断</li>
+            <li :class="isTrue? classA:classB">绑定class 三元运算符</li>  <!-- 如果isTrue为真则绑定classA, 反之则绑定classB -->
+            <br>
+            <input type="checkbox" id="input" v-model="isTrue">
+            <label for="input">当前为 : {{ isTrue }}</label>
+            <hr>
+
+            <p :style="{color:color, background: background}">绑定style</p>
+            <p :style="styleObject">对象绑定style</p>
+        </div>
+    </body>
+
+    <script>
+        var vm = new Vue({
+            el: '#v-ul',
+            data: {
+                imgSrc: 'https://wx2.sinaimg.cn/mw690/00686t3Xly1fkxyrk8wt0j32ba2baqv5.jpg',
+                webSrc: 'https://cn.vuejs.org/v2/api/#v-bind',
+                classA: 'classA',
+                classB: 'classB',
+                isTrue: true,
+                color: 'red',
+                background: 'pink',
+                styleObject: {
+                    fontSize: '30px',
+                    color: 'green'
+                }
+            }
+        });
+    </script>
+</html>

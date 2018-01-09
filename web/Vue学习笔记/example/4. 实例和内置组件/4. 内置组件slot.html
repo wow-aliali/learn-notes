@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+    <script src="../../assets/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <!-- slot (插槽)是标签的内容扩展，也就是说你用slot就可以在自定义组件时传递给组件内容，组件接收内容并输出 -->
+    <!-- 使用插槽分发内容 == 为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为内容分发 -->
+
+    <div id="deng">
+        <aliali>
+            <span slot="name">{{ deng.name }}</span>
+            <span slot="age">{{ deng.age }}</span>
+            <span slot="birthPlace">{{ deng.birthPlace }}</span>
+            <span slot="currentPlace">广东中山</span>
+        </aliali>
+    </div>
+
+    <!-- 用<template>标签的方式定义component的模板 -->
+    <template id="temp">
+        <div>
+            <p>我的名字:<slot name="name"></slot></p>
+            <p>我的年龄:<slot name="age"></slot></p>
+            <p>出生地:<slot name="birthPlace"></slot></p>
+            <p>所在地:<slot name="currentPlace"></slot></p>
+        </div>
+    </template>
+
+</body>
+
+<script>
+    var aliali = {
+        template: '#temp'
+    };
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            deng: {
+                name: '邓_阿狸阿里',
+                age: 20,
+                birthPlace: '广东茂名'
+            }
+        },
+        components: {
+            'aliali': aliali
+        }
+    });
+</script>
+
+</html>

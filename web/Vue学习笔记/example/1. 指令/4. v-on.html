@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <ul id="v-ul">
+            <!-- v-on绑定事件监听器 -->
+            <!-- 绑定多个事件 v-on="{ mousedown: doThis, mouseup: doThat }" -->
+
+            <li v-text="score"></li><br>
+            <button v-on:click="asc">+1s</button>
+            <button @click="desc">-1s</button>  <!-- @click为v-on:click的简写形式 -->
+            <input type="text" v-on:keyup.13="inputs" v-model="model">
+            <!-- keyup.13中的13表示"enter"的键盘值 -->
+        </ul>
+    </body>
+
+    <script>
+        var vm = new Vue({
+            el: '#v-ul',
+            data: {
+                score: 0
+            },
+            methods: {
+                asc: function() {
+                    this.score ++;
+                },
+                desc() {
+                    this.score --;
+                },
+                inputs: function() {
+                    this.score = this.score + parseInt(this.model);
+                }
+            }
+        });
+    </script>
+</html>

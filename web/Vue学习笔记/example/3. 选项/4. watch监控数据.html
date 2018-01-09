@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="deng">
+        <p>今日温度: {{ temper }}°C</p>
+        <p>穿衣建议: {{ closing }}</p>
+        <p>华氏度: {{ huashi }}</p>
+        <p><button @click="temperUp">增加温度</button> <button @click="temperDown">减少温度</button></p>
+    </div>
+
+</body>
+
+<script>
+    var closing_arr = ['T恤短袖','夹克外套','棉衣羽绒'];
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            temper: 15,
+            closing: '夹克外套',
+            huashi: 59
+        },
+        methods: {
+            temperUp: function (){
+                this.temper += 3;
+            },
+            temperDown: function (){
+                this.temper -= 3;
+            }
+        },
+        watch: {
+            temper: function (newVal, oldVal){
+                if (this.temper >= 20){
+                    this.closing = closing_arr[0];
+                } else if (this.temper < 20 && this.temper > 10){
+                    this.closing = closing_arr[1];
+                } else {
+                    this.closing = closing_arr[2];
+                }
+            }
+        }
+        // watch对象里，键是需要监控的数据，值是对应的回调函数
+    });
+
+    vm.$watch('temper', function (newVal, oldVal){
+        this.huashi = 30 + this.temper*1.8;
+    })
+    // 用实例属性的形式写watch监控，也就是把我们watch写在构造器的外部，这样的好处就是降低我们程序的耦合度，使程序变的灵活
+</script>
+
+</html>

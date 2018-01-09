@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 什么是全局API？ : 全局API并不在构造器里，而是先声明全局变量或者直接在Vue上定义一些新功能，Vue内置了一些全局API，比如我们今天要学习的指令Vue.directive。说的简单些就是，在构造器外部用Vue提供给我们的API函数来定义新的功能 -->
+
+        <ul id="v-ul">
+            <!-- Vue.directive 注册或获取自定义指令 -->
+
+            <div v-deng="color">{{ num }}</div>
+            <button @click="add">加加加</button>
+            
+        </ul>
+    </body>
+
+    <script>
+        // Vue.directive('deng', function(el, binding){
+        //     el.style.color = binding.value;
+        // });
+
+        // 参数el 为指令所绑定的元素, 可以用来直接操作DOM
+        // 参数binding 是一个对象, 包含name, value等属性 (看官网-自定义指令)
+            
+        Vue.directive('deng', {
+            bind: function(el, binding){
+                console.log('bind 只调用一次，指令第一次绑定到元素时调用');
+                el.style.color = binding.value;
+            },
+            inserted: function (){
+                console.log('inserted 被绑定元素插入父节点时调用');
+            },
+            updated: function(){
+                console.log('updated 所在组件的 VNode 更新时调用 (组件更新)');
+            },
+            componentUpdated: function(){
+                console.log('componentUpdated 所在组件的 VNode 及其孩子的 VNode 全部更新时调用 (组件更新完成)');
+            },
+            unbind: function (){
+                console.log('unbind 只调用一次，指令与元素解绑时调用');
+            }
+            // 指令定义函数提供了上面五个钩子函数 (也叫生命周期)
+        });
+
+        var vm = new Vue({
+            el: '#v-ul',
+            data: {
+                num: 100,
+                color: 'red'
+            },
+            methods: {
+                add: function (){
+                    this.num ++;
+                }
+            }
+        });
+    </script>
+</html>

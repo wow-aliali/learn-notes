@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <!-- Vue.extend 返回的是一个“扩展实例构造器”,也就是预设了部分选项的Vue实例构造器。经常服务于Vue.component用来生成组件，可以简单理解为当在模板中遇到该组件名称作为标签的自定义元素时，会自动调用“扩展实例构造器”来生产组件实例，并挂载到自定义元素上。 -->
+
+        <div id="deng"></div>
+        <br>
+        <deng></deng>
+
+    </body>
+
+    <script>
+        var dengExtend = Vue.extend({
+            template: '<p><a v-bind:href="dengUrl">{{ dengName }}</a></p>',
+            data: function (){
+                return {
+                    dengName: '邓景造的主页',
+                    dengUrl: 'https://cn.vuejs.org/v2/api/#Vue-extend'
+                }
+            }   // data 选项是特例，需要注意 - 在 Vue.extend() 中它必须是函数
+        });
+        new dengExtend().$mount('#deng');
+        new dengExtend().$mount('deng');
+    </script>
+</html>

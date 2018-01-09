@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <!-- template模板的三种写法 (还有一种用vue-cli) -->
+
+        <div id="deng">
+
+            <template id="tem2">
+                <p style="color: rgb(240, 50, 91)">2. 你好, 世界</p>
+            </template>
+            <!-- 2. 写在<template>标签里的模板, 这种写法更像是在写HTML代码， -->
+
+        </div>
+
+    </body>
+
+    <script type="x-template" id="tem3">
+            <p style="color: rgb(66, 240, 50)">3. 你好, 世界</p>
+    </script>
+    <!-- 3. 写在<script>标签里的模板, 和js文件一样可以让模板文件从外部引入 -->
+
+    <script>
+        var vm = new Vue({
+            el: '#deng',
+            data: {
+                
+            },
+            template: "#tem2"
+
+            // template: `
+            //     <p style="color: blue">1. 你好, 世界</p>
+            // `
+            // 1. 直接在构造器里的template选项后边编写。这种写法比较直观，但是如果模板html代码太多，不建议这么写 (这里需要注意的是模板的标识不是单引号和双引号，而是``反引号)
+        })
+    </script>
+</html>

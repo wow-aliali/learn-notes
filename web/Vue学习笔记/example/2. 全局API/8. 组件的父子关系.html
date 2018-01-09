@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 在一个自定义组件中要使用其他自定义组件，这就需要一个父子组件关系 -->
+    <!-- 父子组件的关系可以总结为 prop 向下传递，事件向上传递 -->
+
+    <div id="deng">
+        <deng :contury="contury" :city="city"></deng>
+    </div>
+
+</body>
+
+<script>
+    var cityComponent = {
+        template: `<div style="color: orange">{{ contury }}的{{ city }}</div>`,
+        props: ['contury', 'city']
+    }   // 子组件
+
+    var dengComponent = {
+        template: `
+        <div>
+            <div style="color: violet">我来自{{ contury }}</div>
+            <city :city="city" :contury="contury"></city>    // 父子组件的嵌套
+        </div>
+        `,
+        props: ['contury', 'city'],   // Prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是反过来不会
+        components: {
+            'city': cityComponent
+        }
+    };   // 构造器外部写局部注册组件
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            contury: '中国',
+            city: '广东'
+        },
+        components: {
+            'deng': dengComponent
+        }
+    });
+</script>
+
+</html>

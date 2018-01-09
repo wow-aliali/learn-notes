@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <!-- Vue一共有10个生命周期函数，我们可以利用这些函数在vue的每个阶段都进行操作数据或者改变内容 -->
+
+        <div id="deng">
+            <p>{{ num }}</p>
+            <button type="button" @click="add">加加加</button>
+        </div>
+
+    </body>
+
+    <script>
+
+        var vm = new Vue({
+            el: '#deng',
+            data: {
+                num: 1
+            },
+            methods: {
+                add: function (){
+                    this.num ++;
+                }
+            },
+            beforeCreate: function (){
+                console.log('beforeCreate - 在实例初始化之后, 实例创建之前调用');
+            },
+            created: function (){
+                console.log('created - 在实例创建完成后立即调用');
+            },
+            beforeMount: function (){
+                console.log('beforeMount - 在挂载开始之前调用');
+            },
+            mounted: function (){
+                console.log('mounted - el被新创建的vm.$el替换, 并挂载到实例上之后调用');
+            },
+            beforeUpdate: function (){
+                console.log('beforeUpdate - 数据更新时调用');
+            },
+            updated: function (){
+                console.log('updated - 数据更新后调用')
+            },
+            activated: function (){
+                console.log('activated - keep-alive组件激活时调用');
+            },
+            deactivated: function (){
+                console.log('deactivated - keep-alive组件停用时调用')
+            },
+            beforeDestroy: function (){
+                console.log('beforeDestroy - 实例销毁之前调用。在这一步，实例仍然完全可用');
+            },
+            destoryed: function (){
+                console.log('destroyed - 实例销毁后调用');
+            }
+        })
+    </script>
+</html>

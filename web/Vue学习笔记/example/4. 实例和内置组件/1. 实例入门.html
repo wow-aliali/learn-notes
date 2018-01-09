@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+        <script src="../../assets/js/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <!-- 实例就是在构造器外部操作构造器内部的属性选项或者方法，就叫做实例？实例的作用就是给原生的或者其他javascript框架一个融合的接口或者说是机会，让Vue和其他框架一起使用。 -->
+
+        <div id="deng">
+            {{ msg }}
+        </div>
+    
+    </body>
+
+    <script>
+        var vm = new Vue({
+            el: '#deng',
+            data: {
+                msg: 'hello, deng'
+            },
+            mounted: function (){
+                $('#deng').text('你好, 阿狸阿里');
+            },
+            // (mounted钩子函数) el被新创建的vm.$el替换, 并挂载到实例上之后调用, 挂载之后才能使用jquery的方法
+            methods: {
+                cons: function (){
+                    alert('调用了cons方法');
+                }
+            }
+        });
+
+        vm.cons();  // 用实例调用构造器里的方法
+    </script>
+</html>

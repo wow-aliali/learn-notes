@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="v-ul">
+            <!-- v-pre 在模板中跳过vue的编译，直接输出原始值 (不进行渲染) -->
+            <!-- v-cloak 在vue渲染完指定的整个DOM后才进行显示, 它必须和CSS样式一起使用 -->
+            <!-- v-once 在第一次加载DOM时进行渲染，渲染完成后视为静态内容，跳出以后的渲染过程 (只渲染一次) -->
+
+            <div v-pre>{{ myName }}</div>
+            <br>
+            <div v-cloak>{{ myName }}</div>
+            <br>
+            <div v-once>{{ myName }}</div>
+            <br>
+            <input type="text" v-model="myName">
+            
+        </ul>
+    </body>
+
+    <script>
+        var vm = new Vue({
+            el: '#v-ul',
+            data: {
+                myName: '阿狸阿里'
+            }
+        });
+    </script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <ul id="v-ul">
+            <li v-for="num in sortArr">{{ num }}</li>
+            <hr>
+            <li v-for="(student, index) of students">{{ index + 1 }} : {{ student.name }}--{{ student.age }}</li>
+        </ul>
+    </body>
+
+    <script>
+        var vm = new Vue({
+            el: '#v-ul',
+            data: {
+                arr: [45,28,36,95,84,12,6,9],
+                students: [
+                    {name: 'deng', age: 50},
+                    {name: 'jing', age: 30},
+                    {name: 'zao', age: 40},
+                    {name: 'aliali', age: 10}
+                ]
+            },
+            computed: {
+                sortArr: function(){
+                    return this.arr.sort(sortNumber);
+                }
+            }
+            // computed就是 实时计算 使用。 Vue检测到数据发生变动时就会执行对相应数据有引用的函数
+        });
+        
+        function sortNumber(a,b){
+            return a-b;    // 按大小排序
+        }
+    </script>
+</html>

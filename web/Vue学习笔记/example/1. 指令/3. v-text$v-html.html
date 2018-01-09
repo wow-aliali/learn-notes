@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <ul id="v-ul">
+            <!-- 用{{ xx }}渲染是有弊端的 , 当网速很慢或js出错时会显示{{ xx }} , 而v-text则不显示任何东西 , 推荐用v-text -->
+            <!-- v-html可以渲染html代码 , 但尽量少用 , 因为容易导致XSS攻击 -->
+
+            <li>{{ name }}</li>
+            <li v-text="name"></li>
+            <hr>
+            <li v-html="code"></li>
+        </ul>
+    </body>
+
+    <script>
+        var vm = new Vue({
+            el: '#v-ul',
+            data: {
+                name: '阿狸阿里',
+                code: '<h1>Html代码</h1>'
+            }
+        });
+    </script>
+</html>

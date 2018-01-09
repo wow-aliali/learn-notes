@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- <component></component>标签是Vue框架自定义的标签，它的用途就是可以动态绑定我们的组件，根据数据的不同更换不同的组件 -->
+    <!-- 通过使用Vue定义的<component>元素，动态地绑定到它的 is 特性，我们让多个组件可以使用同一个挂载点，并动态切换 -->
+
+    <div id="deng">
+        <component v-bind:is="whichComp"></component>
+        <button @click="changeComp">更换组件</button>
+    </div>
+
+</body>
+
+<script>
+    var compA = {
+        template: `<h2 style="color: blue">我是组件A</h2>`
+    };
+    var compB = {
+        template: `<h2 style="color: violet">我是组件B</h2>`
+    };
+    var compC = {
+        template: `<h2 style="color: orange">我是组件C</h2>`
+    };
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            whichComp: 'compA'
+        },
+        components: {
+            'compA': compA,
+            'compB': compB,
+            'compC': compC
+        },
+        methods: {
+            changeComp: function (){
+                if (this.whichComp == 'compA'){    // 等于
+                    this.whichComp = 'compB';      // 赋值
+                } else if (this.whichComp == 'compB'){
+                    this.whichComp = 'compC';
+                } else {
+                    this.whichComp = 'compA';
+                }
+            }
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- Vue.component 注册或获取全局组件，就是制作自定义标签，这些标签在HTML中是没有的 -->
+    <!-- 组件(component)和指令(directive)的区别: 组件注册的是一个标签, 而指令注册的是已有标签里的一个属性, 在实际开发中我们还是用组件比较多 -->
+    <!-- Vue.component和Vue.extend一样, data必须是函数 -->
+
+    <div id="deng">
+        <aliali></aliali>
+        <zaozao></zaozao>
+    </div>
+
+</body>
+
+<script>
+    Vue.component('aliali', {
+        template: `<h2 style="color: orange">全局注册的组件</h2>`
+    })
+    // 全局注册就是在构造器的外部用Vue.component来注册
+    
+    var vm = new Vue({
+        el: '#deng',
+        components: {
+            'zaozao': {
+                template: `<h2 style="color: violet">局部注册的组件</h2>`
+            }
+        }  // 局部注册组件
+    })
+</script>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- extends 通过外部增加对象的形式，对构造器进行扩展 -->
+    <!-- extends 允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数)，而无需使用 Vue.extend -->
+
+    <div id="deng">
+        <p>${ num }</p>  <!-- 插值符号已改变 -->
+        <p>
+            <button @click="add">递增</button>
+        </p>
+    </div>
+
+</body>
+
+<script>
+    var extendsObj = {
+        updated: function (){
+            console.log('我是extends里的钩子');
+        }
+    }
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            num: 1
+        },
+        methods: {
+            add: function () {
+                this.num++;
+            }
+        },
+        updated: function () {
+            console.log('我是构造器里的钩子');
+        },
+        extends: extendsObj,
+        // 和mixins一样, extends的钩子函数要比构造器的钩子函数先执行
+        // extends的值不是数组, 就只有一个
+        delimiters: ['${','}']
+        // delimiters选项的作用是改变我们插值的符号, Vue默认的插值是双大括号{{}}
+    });
+</script>
+
+</html>

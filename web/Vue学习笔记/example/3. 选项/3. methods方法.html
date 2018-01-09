@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="deng">
+        <p>
+            <span>{{ num }}</span>
+            <button @click="add">加加加</button>
+        </p>
+        <br>
+        <p>
+            <button v-on:mouseenter="hello">问个好吧</button>
+            <button v-on:mouseenter="hello2('阿狸阿里')">问个好吧</button>
+            <btn v-on:mouseenter.native="hello2('阿狸阿里 component')"></btn>
+            <!-- .native 给component绑定构造器里的原生事件。 在实际开发中经常需要把某个按钮封装成组件，然后反复使用，如何让组件调用构造器里的方法，而不是组件里的方法，就需要用到我们的.native修饰符了 -->
+        </p>
+    </div>
+
+    <button onmouseenter="vm.hello2('阿狸阿里 原生调用')">问个好吧</button> <!-- 作用域外部调用构造器里的方法，不建议使用 -->
+
+
+</body>
+
+<script>
+    var btnComp = {
+        template: `<button>问个好吧</button>`
+    }
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            num: 10,
+            name: 'aliali'
+        },
+        components: {
+            'btn': btnComp
+        },
+        methods: {
+            add: function (){
+                this.num += 10;
+            },
+            hello: function (){
+                alert('hello, ' + this.name + '!');
+            },
+            hello2: function (name){
+                alert('hello, ' + name + '!');
+            }
+        }
+    });
+</script>
+
+</html>

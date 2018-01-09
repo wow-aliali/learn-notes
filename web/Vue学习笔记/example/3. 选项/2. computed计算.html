@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- computed 的作用主要是对原数据进行改造输出。改造输出：包括格式的编辑，大小写转换，顺序重排，添加符号等 -->
+    <!-- computed，methods，watch 里的函数this上下文自动绑定到Vue实例 （不能使用箭头函数来定义computed，methods，watch属性函数，因为箭头函数绑定了父级作用域的上下文） -->
+
+    <div id="deng">
+        <p>{{ newPrice }}</p>
+        <br>
+        <ul>
+            <li v-for="news in sortNews">{{ news.title }} - {{ news.date }}</li>
+        </ul>
+    </div>
+
+</body>
+
+<script>
+    var newsList = [
+        {
+            title: '英人权活动人士被中国巴掌扇回 怀念起日不落帝国',
+            date: '2017-11-1'
+        },
+        {
+            title: '俄14岁女模特在上海医院死亡 俄总领馆调查死因',
+            date: '2017-11-2'
+        },
+        {
+            title: '对华关系创造多个“第一” 特朗普为何比前任友好',
+            date: '2017-11-4'
+        },
+        {
+            title: '中国游客七万元喝假威士忌 瑞士老板不远万里道歉',
+            date: '2017-11-6'
+        }
+    ];
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            price: 666,
+            newsList: newsList
+        },
+        computed: {
+            newPrice: function (){
+                return this.price = '$' + this.price + '美元';
+            },
+            sortNews: function (){
+                return this.newsList.reverse();
+            } 
+        }
+    });
+</script>
+
+</html>

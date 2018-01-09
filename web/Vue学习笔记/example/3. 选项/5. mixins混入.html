@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 混合 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项 (如钩子函数, methods等)。 -->
+    <!-- Mixins一般有两种用途：
+    1、在你已经写好了构造器后，需要增加方法或者临时的活动时使用的方法，这时用 mixins会减少源代码的污染。
+    2、很多地方都会用到的公用方法，用 mixins的方法可以减少代码量，实现代码重用。 -->
+
+    <div id="deng">
+        <p>{{ num }}</p>
+        <p><button @click="add">递增</button></p>
+    </div>
+
+</body>
+
+<script>
+    Vue.mixin({
+        updated: function (){
+            console.log('我是全局的mixin');
+        }
+    })
+
+    //额外临时加入时，用于显示日志
+    var addLog = {
+        updated: function (){
+            console.log('我是构造器的mixin . 数据发生变化变成了' + this.num);
+        }
+        // updated是钩子函数
+    }
+
+    var vm = new Vue({
+        el: '#deng',
+        data: {
+            num: 1
+        },
+        methods: {
+            add: function (){
+                this.num ++;
+            }
+        },
+        updated: function (){
+            console.log('我是构造器里的钩子')
+        },
+        mixins: [addLog]
+        // mixins的钩子函数要比构造器的钩子函数先执行
+    });
+</script>
+
+</html>

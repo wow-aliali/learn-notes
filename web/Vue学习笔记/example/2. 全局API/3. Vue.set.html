@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <!-- Vue.set 的作用就是在构造器外部设置对象的属性 (数组的值) -->
+
+        <div id="deng">
+            <p v-for="num of numArr">{{ num }}</p>
+            <button type="button" onclick="changNum()">变变变</button>
+        </div>
+
+    </body>
+
+    <script>
+        // 由于Javascript的限制，Vue不能自动检测以下变动的数组:
+        //   当你利用索引直接设置一个项时，vue不会为我们自动更新。
+        //   当你修改数组的长度时，vue不会为我们自动更新。
+
+        function changNum(){
+            // vm.numArr[1] = 'aliali';  ( 无效 )
+            
+            Vue.set(vm.numArr, 1, 'aliali');
+
+            vm.numArr.splice(1, 1, 'aliali');  // 也可以使用原生方法 .splice删除一个元素, 再添加一个新的元素, 达到更新的效果
+        }
+
+        var vm = new Vue({
+            el: '#deng',
+            data: {
+                numArr: ['deng','jing','zao']
+            }
+        })
+    </script>
+</html>
