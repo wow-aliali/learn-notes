@@ -28,6 +28,8 @@
 
 [JavaScript 数组方法对比 (增删改)](https://mp.weixin.qq.com/s/xm8rCiTwOhmSx6wXwJn07w)
 
+[前端开发中常用的正则表达式](http://blog.csdn.net/bolg_hero/article/details/41117697)
+
 ####  
 
 #### :radio_button: 移动端

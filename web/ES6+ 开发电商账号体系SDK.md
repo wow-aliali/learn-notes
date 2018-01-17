@@ -1,3 +1,5 @@
+[TOC]
+
 Webpack打包工具:
 
  - 用于支持<u>模块化开发</u>
@@ -21,10 +23,15 @@ Babel是ES6实用化的核心:
  - Dev Server和环境配置
 
 
+babel插件:
+
+- babel-plugin-transform-runtime在编译时检测是否使用ES6的新API
+- babel-preset-env用来取代babel-preset-es2015、es2016、lastest等等这些包 , 既可以完全编译 , 也可以选择部分编译
+
 
 
 ```javascript
-// ↓ 相当于 new 新对象，赋值给obj2
+// ↓ 相当于 new 新对象，赋值给obj2，在这里，obj2是一个对象字面量
 var obj2 = { name: aliali }
 ```
 
@@ -66,13 +73,29 @@ export default () => {}
 ```
 
 ```javascript
-// 获取DOM节点 单独模块文件 /common/ultils.js
+// 获取DOM节点，添加/删除class 单独模块文件 /common/ultils.js
 const getId = (id) => {
   const dom = document.getElementById(id);
-  dom && dom.setAttribute('id', dom.id + '-' + Math.floor(Math.random * 100000));
+  dom && dom.setAttribute('id', dom.id + '-' + Math.floor(Math.random() * 100000));
   return dom;
 };
-export { getId as $ }
+
+const clsReg = new RegExp('(\\s|^)' + cls + '\\s|$)');
+const hasClass = (obj, cls) => {
+  return obj.className.match(clsReg);
+}
+const addClass = (obj, cls) => {
+  obj.className.trim();   // 去除字符串前后空格
+  if(!hasClass(obj, cls)) {
+    obj.className += ' ' + cls;
+  }
+}
+cosnt removeClass = (obj, cls) => {
+  if(hasClass(obj, cls)) {
+    obj.className = obj.className.replace(clsReg, ' ');
+  }
+}
+export { getId as $, addClass, removeClass }
 ```
 
 
@@ -117,17 +140,95 @@ var func = function(argu) {
 var a = (argu = 1) => {}
 ```
 
-#### :radio_button: Symbol类型
+#### :radio_button: class 类
 
-ES6 为 JavaScript 引入了一种新的基本类型：Symbol，它由全局 Symbol() 函数创建，每次调用 Symbol()函数，都会返回一个唯一的 Symbol。Symbol 充当唯一的对象键(key)。
+```javascript
+/* ES5 创建类 */
+const Slider = function() {
+  this.aaa = 3;
+}
+Slider.prototype.method = function() {   // 给Slider函数的原型添加方法
+  console.log(this.aaa);
+  setTimeout(() => {
+    this.aaa = 2;
+  }, 1000)
+}
+var slider = new Slider({ aaa: 1 });
+slider.method();
+
+/* ES6 创建类 */
+class Slider {   // 每个类必须有一个constructor构造函数
+  constructor() {
+    this.aaa = 3;
+    this.aaa = this.aaa.bind(this);
+  }
+  
+  method() {
+    console.log(this.aaa);
+    setTimeout(() => {
+      this.aaa = 2;
+    }, 1000)
+  }
+  
+  async cl() {   // 可以为async函数
+    await console.log('123');
+  }
+  
+  static method2() {
+    console.log('method2');
+  }
+}
+
+const slider = new Slider();
+slider.method();   // 实例方法，属于实例化类后对象的方法，即实例对象调用的方法
+
+Slider.method2();   // 静态方法，属于类的方法，类可以直接调用
+```
+
+函数声明会被提升，而类的声明不会被提升。
+
+JavaScript类中有三种类型的方法:
+
+- 构造方法
+- 静态方法
+- 原型方法
+
+类构造函数方法创建初始化对象。一个类只能有一个构造方法，可以使用constructor关键字创建构造函数。
+
+类的静态方法是用类调用的，而不是用类的实例对象调用的。
+
+```scss
+class Car {
+  static count {
+    console.log("我是静态方法");
+  }
+}
+Car.count();
+```
+
+任何使用类的实例对象访问的常规方法都被称为原型方法，这些方法可以继承和使用类的对象。
+
+```scss
+class Car {
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+    getInfo() {
+        console.log(this.maker + " costs : " + this.price);
+    }
+}
+var car1 = new Car("BMW", 10);
+car1.getInfo();
+```
+
+#### :radio_button: Symbol 类型
+
+ES6 为 JavaScript 引入了一种新的基本类型：Symbol，它由全局 Symbol() 函数创建，每次调用 Symbol()函数，都会返回一个唯一的 Symbol。Symbol 充当唯一的对象键(存在于__proto__)。
+
+[Symbol](https://developer.mozilla.org/zh-CN/docs/Glossary/Symbol)
 
 **Symbol.iterator **为每一个对象定义了默认的迭代器，该迭代器可以被 `for...of` 循环使用。
-
-#### :radio_button: Object.assign() 
-
-Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象
-
-语法: Object.assign(target, ...sources)
 
 #### :radio_button: promise 函数
 
@@ -135,7 +236,7 @@ Object.assign() 方法用于将所有可枚举属性的值从一个或多个源�
 Form.onsubmit = async(e) => {
   e.preventDefault(e);
   
-  //普通的回调嵌套
+  /* 普通的回调嵌套 */
   const fun1 = (callback) => {
     setTimeout(() => callback && callback('fun1'), 1000);
   }
@@ -149,7 +250,7 @@ Form.onsubmit = async(e) => {
     })
   })
   
-  // promise 函数，将回调嵌套变为链式操作
+  /* promise 函数，将回调嵌套变为链式操作 */
   const prom1 = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -168,8 +269,8 @@ Form.onsubmit = async(e) => {
   	.then(prom2)
   	.then(v2 => console.log(v2))
   
-  // async&await 依赖于 promise 函数
-  const asy1 = await prom1();
+  /* async&await 依赖于 promise 函数 */
+  const asy1 = await prom1();   // 对于await 先后顺序
   console.log(asy1);
   const asy2 = await prom2();
   console.log(asy2);
@@ -211,3 +312,26 @@ FetchMock.mock('/login', (url, opts) => {
 });
 ```
 
+#### :radio_button: Object.assign() 
+
+`Object.assign()` 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象
+
+语法: Object.assign(target, ...sources)
+
+#### :radio_button: Object.key()
+
+`Object.key()` 方法用于列举出指定对象上所有可枚举属性的key (不包括原型链上的)
+
+语法: Object.keys(obj)
+
+#### :radio_button: Object.getOwnPropertyNames()
+
+`Object.getOwnPropertyNames()` 方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。
+
+#### :radio_button: Object.getOwnPropertySymbols()
+
+`Object.getOwnPropertySymbols()` 方法返回一个给定对象自身的所有 Symbol 属性的数组。
+
+#### :radio_button: Array.from()
+
+`Array.from()` 方法从一个类似数组或可迭代对象中创建一个新的数组实例。

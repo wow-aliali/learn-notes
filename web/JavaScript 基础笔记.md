@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 ### :heartpulse: JavaScript 简介 
 
 JavaScript 是基于ECMAScript标准实现的。
@@ -179,9 +183,9 @@ do {
 
 实参的个数可以不等于形参的个数：
 
-​	1.实参个数少于形参，超过形参的部分直接舍弃
+​	1.实参个数多于形参，超过形参的部分直接舍弃
 
-​	2.实参个数多于形参，先给前面的形参参数赋值，后面没有赋值的则为undefined
+​	2.实参个数少于形参，先给前面的形参参数赋值，后面没有赋值的则为undefined
 
 return关键字：
 
@@ -297,7 +301,7 @@ fun();   // 本层没有a的定义, 但是inner的作用域链存在`var a = 1`,
 
 ​	`indexOf()` 表示指定字符首次出现的位置，返回值是一个数组
 
-​	`concat()` 表示字符串的拼接，参数可以使一个字符串或多个，用逗号隔开
+​	`concat()` 表示字符串的拼接，参数可以是一个字符串或多个，用逗号隔开
 
 ​	`slice(start, end)` 表示截取索引值从start到end之间的字符串，不包括end
 
@@ -444,6 +448,8 @@ function sum(a, b, c) {
 };
 console.log(sum(1, 2));
 ```
+
+​	可以使用Array.prototype.slice.call(arguments)将arguments对象转换为数组.
 
 
 
