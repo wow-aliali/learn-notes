@@ -66,8 +66,6 @@
 
 #### :radio_button: 网络知识
 
-[两张趣图助你理解HTTP状态码的含义](http://www.admin10000.com/document/16670.html)
-
 
 
 #### :radio_button: 设计知识
