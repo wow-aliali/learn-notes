@@ -16,11 +16,13 @@
 
 [CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅](https://juejin.im/entry/59c9521e6fb9a00a437b1dbc)
 
+[前端小知识--为什么你写的height:100%不起作用？](https://segmentfault.com/a/1190000012707337)
+
 
 
 #### :radio_button: Javascript
 
-[ES6常用知识点概述](https://juejin.im/post/59d7790e6fb9a00a496e926a)
+[19个 JavaScript 有用的简写技术](https://segmentfault.com/a/1190000012673854)
 
 [JavaScript核心概念归纳整理](https://mp.weixin.qq.com/s/I7A1iC8Et6uOGZ234DsTlA)
 
