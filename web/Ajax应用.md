@@ -1,6 +1,8 @@
----
+[TOC]
+
+```
 AJAX（异步的javascript和XML） 是一种与服务器交换数据的技术，可以在不重新载入整个页面的情况下更新网页的一部分
----
+```
 
 
 
@@ -89,6 +91,19 @@ xhr.onreadystatechange = () => {
 #### :green_heart: JSON 解析
 
 `JSON.parse()` 方法用来解析JSON字符串，构造由字符串描述的JavaScript值或对象。
+
+#### :green_heart: 跨域
+
+一个域名地址的组成:
+
+![mark](http://osxo5iyn5.bkt.clouddn.com/img/180121/IBA7L11Fak.jpg)
+
+- 当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域
+- 不同域之间相互请求资源，就算作 “跨域”
+
+
+
+[前端常见跨域解决方案（全）](https://mp.weixin.qq.com/s/fDlyrRTv6zp-PQ1iRkTpBQ)
 
 
 
@@ -224,13 +239,20 @@ $.get()方法还有最后一个参数规定返回的数据类型是json格式
 
 
 
-#### :green_heart: 使用ajax()方法加载服务器数据
+#### :green_heart::green_heart: 使用ajax()方法加载服务器数据
 
 使用`ajax()`方法是最底层、功能最强大的请求服务器数据的方法，它不仅可以获取服务器返回的数据，还能向服务器发送请求并传递数值，它的调用格式如下：
 
-`**jQuery.ajax([settings])**` **或** `**$.ajax([settings])**`
+`jQuery.ajax([settings])` **或** `$.ajax([settings])`
 
-其中参数settings为发送ajax请求时的配置对象，在该对象中，url表示服务器请求的路径，data为请求时传递的数据，dataType为服务器返回的数据类型，success为请求成功的执行的回调函数，type为发送数据请求的方式，默认为get。
+其中参数settings为发送ajax请求时的配置对象，在该对象中：
+
+- type为发送数据请求的方式，默认为get
+- url表示服务器请求的路径
+- data为请求时传递的数据(POST方法使用)
+- dataType为服务器返回的数据类型
+- success为请求成功时执行的回调函数（传入返回后的数据作参数）
+- error为请求失败时执行的回调函数（传入XMLHttpRequest对象作参数）。
 
 例如，点击页面中的“加载”按钮，调用`ajax()`方法向服务器请求加载一个txt文件，并将返回的文件中的内容显示在页面，如下图所示：
 
@@ -244,11 +266,56 @@ $.get()方法还有最后一个参数规定返回的数据类型是json格式
 
 
 
+```javascript
+// GET请求实例 查询员工
+$('#search').click(function() {
+  $.ajax({
+    type: 'GET',
+    url: 'service.php?number=' + $('#keyword').val(),
+    dataType: 'json',
+    success: function(data) {
+      if(data.success) {
+        $('#searchResult').html(data.msg);
+      } else {
+        $('#searchResult').html('出现错误: ' + data.msg);
+      }
+    },
+    error: function(jqXHR) {
+      alert('发生错误: ' + jqXHR.status)
+  	}
+  })
+})
+
+// POST请求实例 添加员工
+$('#save').click(function() {
+  $.ajax({
+    type: 'POST',
+    url: 'service.php',
+    dataType: 'json',
+    data: {
+      name: $('#staffName').val(),
+      number: $('#staffNumber').val(),
+      sex: $('#staffSex').val(),
+      job: $('#staffJob').val()
+    },
+    success: function(data) {
+      if(data.success) {
+        $('#searchResult').html(data.msg);
+      } else {
+        $('#searchResult').html('出现错误: ' + data.msg);
+      }
+    }
+  });
+});
+```
+
+
+
 #### :green_heart: 使用ajaxSetup()方法设置全局Ajax默认选项
 
 使用`ajaxSetup()`方法可以设置Ajax请求的一些全局性选项值，设置完成后，后面的Ajax请求将不需要再添加这些选项值，它的调用格式为：
 
-`**jQuery.ajaxSetup([options])**`**或**`**$.ajaxSetup([options])**`
+`jQuery.ajaxSetup([options])`**或**`$.ajaxSetup([options])`
 
 可选项options参数为一个对象，通过该对象设置Ajax请求时的全局选项值。
 
@@ -268,7 +335,7 @@ $.get()方法还有最后一个参数规定返回的数据类型是json格式
 
 `ajaxStart()`和`ajaxStop()`方法是绑定Ajax事件。ajaxStart()方法用于在Ajax请求发出前触发函数，ajaxStop()方法用于在Ajax请求完成后触发函数。它们的调用格式为：
 
-`**$(selector).ajaxStart(function())**`**和**`**$(selector).ajaxStop(function())**`
+`$(selector).ajaxStart(function())`**和**`$(selector).ajaxStop(function())`
 
 其中，两个方法中括号都是绑定的函数，当发送Ajax请求前执行`ajaxStart()`方法绑定的函数，请求成功后，执行ajaxStop ()方法绑定的函数。
 
