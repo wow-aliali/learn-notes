@@ -40,7 +40,15 @@
 
 [移动端响应式的7种UI布局解析(设计)](http://www.uisdc.com/7-responsive-ui-layout)
 
-####  
+
+
+#### :radio_button: Vue.js
+
+[Vue2.0 子父组件通信](https://www.jianshu.com/p/2670ca096cf8)
+
+[Vue2.0 平级组件之间通信](https://www.jianshu.com/p/d946bd7c26f4)
+
+
 
 #### :radio_button: 部署优化
 
