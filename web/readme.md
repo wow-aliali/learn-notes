@@ -58,9 +58,11 @@
 
 [Chrome 开发者工具中文文档](http://www.css88.com/doc/chrome-devtools/)
 
-[[视频] Fiddler工具使用](http://www.imooc.com/learn/37)
+[XSwitch - 一个解决本地开发请求转发的浏览器插件](https://mp.weixin.qq.com/s/1XAYJFzzsO3-MHiDu0upWQ)
 
-[前端调试告别笨办法 (Fiddler工具)](https://juejin.im/post/594fbe266fb9a06bbf6fca45)
+[whistle 全新的跨平台web调试工具](https://github.com/avwo/whistle)
+
+[Charles(v4.* @Windows)的使用](https://www.jianshu.com/p/0fee626ffbb0)
 
 ####  
 
