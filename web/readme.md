@@ -26,11 +26,11 @@
 
 [19个 JavaScript 有用的简写技术](https://segmentfault.com/a/1190000012673854)
 
-[JavaScript核心概念归纳整理](https://mp.weixin.qq.com/s/I7A1iC8Et6uOGZ234DsTlA)
-
 [this指向*、apply、call、bind (附加4种函数调用)](https://juejin.im/post/59bfe84351882531b730bac2)
 
 [JavaScript 数组方法对比 (增删改)](https://mp.weixin.qq.com/s/xm8rCiTwOhmSx6wXwJn07w)
+
+[JavaScript 创建对象的七种方式](https://xxxgitone.github.io/2017/06/10/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F/)
 
 [前端开发中常用的正则表达式](http://blog.csdn.net/bolg_hero/article/details/41117697)
 
@@ -50,17 +50,33 @@
 
 [Vue2.0 平级组件之间通信](https://www.jianshu.com/p/d946bd7c26f4)
 
+[vue-router路由懒加载（解决vue项目首次加载慢）](http://www.cnblogs.com/lijuntao/p/7777581.html)
+
+[VUE使用中踩过的坑](https://segmentfault.com/a/1190000013008420)
+
+[(进阶) 你不知道的Vue响应式原理](https://juejin.im/post/5a734b6cf265da4e70719386)
+
+[(进阶) 剖析Vue原理&实现双向绑定MVVM](https://segmentfault.com/a/1190000006599500)
+
+
+
+#### :radio_button: Node.js
+
+[Node.js：上传文件，服务端如何获取文件上传进度](https://juejin.im/post/5a77a46cf265da4e78327552)
+
 
 
 #### :radio_button: 部署优化
 
-[web前端资源文件的部署和优化](https://juejin.im/post/59a50dc1f265da246e6e108f)
-
-[提高网页可访问性的十条建议](https://www.w3cplus.com/wai-aria/web-accessibility.html)
-
 [浅谈Web缓存 (Cache-control和Expires等)](http://www.alloyteam.com/2016/03/discussion-on-web-caching/)
 
 [前端常见跨域解决方案（全）](https://mp.weixin.qq.com/s/fDlyrRTv6zp-PQ1iRkTpBQ)
+
+[web前端资源文件的部署和优化 (雅虎军规)](https://juejin.im/post/59a50dc1f265da246e6e108f)
+
+[提高网页可访问性的十条建议](https://www.w3cplus.com/wai-aria/web-accessibility.html)
+
+[折腾服务器武装自己](https://juejin.im/entry/5a7d77bcf265da4e8c44fdb6)
 
 
 
@@ -77,6 +93,8 @@
 ####  
 
 #### :radio_button: 网络知识
+
+[前端相关的HTTP请求](https://juejin.im/post/5a757d2f5188254e5c6c404a)
 
 
 
