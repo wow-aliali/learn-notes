@@ -20,6 +20,8 @@
 
 [vh,vw单位你知道多少？](https://juejin.im/entry/59b00e46f265da2491513bcc)
 
+[团队 - CSS 样式规范](http://web.jobbole.com/91792/)
+
 
 
 #### :radio_button: Javascript
@@ -28,13 +30,21 @@
 
 [this指向*、apply、call、bind (附加4种函数调用)](https://juejin.im/post/59bfe84351882531b730bac2)
 
-[JavaScript 数组方法对比 (增删改)](https://mp.weixin.qq.com/s/xm8rCiTwOhmSx6wXwJn07w)
+[JS中的数组操作](http://www.admin10000.com/document/17682.html)
+
+[给初学者：JavaScript 中数组操作注意点](https://segmentfault.com/a/1190000012463583)
 
 [JavaScript 创建对象的七种方式](https://xxxgitone.github.io/2017/06/10/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F/)
 
+[我眼中的 JavaScript 函数式编程](http://taobaofed.org/blog/2017/03/16/javascript-functional-programing/)
+
 [前端开发中常用的正则表达式](http://blog.csdn.net/bolg_hero/article/details/41117697)
 
-####  
+[10分钟理解JS引擎的执行机制](https://segmentfault.com/a/1190000012806637)
+
+[(进阶) JS运行机制最全面的一次梳理！](https://mp.weixin.qq.com/s/HKfeCPIm5hV6s62U-TEARQ)
+
+
 
 #### :radio_button: 移动端
 
