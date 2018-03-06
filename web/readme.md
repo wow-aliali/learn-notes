@@ -10,6 +10,8 @@
 
 [2017年最新的 <head> 元素指南](https://juejin.im/entry/59acaf8c5188252432175482)
 
+[12个HTML和CSS必须知道的重点难点问题](https://juejin.im/post/5a954add6fb9a06348538c0d)
+
 
 
 #### :radio_button: CSS
@@ -38,11 +40,19 @@
 
 [我眼中的 JavaScript 函数式编程](http://taobaofed.org/blog/2017/03/16/javascript-functional-programing/)
 
+[一张图理解prototype、proto和constructor的三角关系](https://www.cnblogs.com/xiaohuochai/p/5721552.html)
+
 [前端开发中常用的正则表达式](http://blog.csdn.net/bolg_hero/article/details/41117697)
 
-[10分钟理解JS引擎的执行机制](https://segmentfault.com/a/1190000012806637)
+[很全很全的JavaScript的模块讲解](https://segmentfault.com/a/1190000012464333)
 
-[(进阶) JS运行机制最全面的一次梳理！](https://mp.weixin.qq.com/s/HKfeCPIm5hV6s62U-TEARQ)
+Event Loop （JS执行机制）：
+
+​	[10分钟理解JS引擎的执行机制](https://segmentfault.com/a/1190000012806637)
+
+​	[Node 定时器详解](https://mp.weixin.qq.com/s/DU1LLqqcLPJ3qfqN_FSr-w)
+
+​	[(进阶) JS运行机制最全面的一次梳理！](https://mp.weixin.qq.com/s/HKfeCPIm5hV6s62U-TEARQ)
 
 
 
