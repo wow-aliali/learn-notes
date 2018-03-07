@@ -90,10 +90,6 @@ Event Loop （JS执行机制）：
 
 #### :radio_button: 部署优化
 
-[浅谈Web缓存 (Cache-control和Expires等)](http://www.alloyteam.com/2016/03/discussion-on-web-caching/)
-
-[前端常见跨域解决方案（全）](https://mp.weixin.qq.com/s/fDlyrRTv6zp-PQ1iRkTpBQ)
-
 [web前端资源文件的部署和优化 (雅虎军规)](https://juejin.im/post/59a50dc1f265da246e6e108f)
 
 [提高网页可访问性的十条建议](https://www.w3cplus.com/wai-aria/web-accessibility.html)
@@ -117,6 +113,14 @@ Event Loop （JS执行机制）：
 #### :radio_button: 网络知识
 
 [前端相关的HTTP请求](https://juejin.im/post/5a757d2f5188254e5c6c404a)
+
+[浅谈Web缓存 (Cache-control和Expires等)](http://www.alloyteam.com/2016/03/discussion-on-web-caching/)
+
+[很全很全的前端本地存储讲解](https://segmentfault.com/a/1190000012578794)
+
+[前端常见跨域解决方案（全）](https://mp.weixin.qq.com/s/fDlyrRTv6zp-PQ1iRkTpBQ)
+
+[WebSocket：5分钟从入门到精通](https://segmentfault.com/a/1190000012709475)
 
 
 
