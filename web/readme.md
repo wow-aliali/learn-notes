@@ -124,12 +124,8 @@ Event Loop （JS执行机制）：
 
 
 
-#### :radio_button: 设计知识
+#### :radio_button: 面试归纳
 
-[36个设计中最常见却最容易忽视的界面元素](https://m.weibo.cn/status/4149464128266743?sudaref=note.youdao.com&retcode=6102)
+[面试的信心来源于过硬的基础](https://segmentfault.com/a/1190000013331105)
 
-[你设计的那么好，用户真的想看吗？（重要信息的展示设计）](https://mp.weixin.qq.com/s?__biz=MjM5NTA0NjY4MA==&mid=2659003246&idx=1&sn=68e22a8c5a9f2dad32a4fa15b9af6561&chksm=bd77ff198a00760f26d61d92182ca38d279f62ade2756de884798601b1b3f3a6929e4aff3f84&mpshare=1&scene=23&srcid=07126Wi1C9SrCrNpUhVA1c2F#rd)
-
-[没有美术基础怎么画卡通头像？来看这个方法！](http://www.uisdc.com/cartoon-portrait-paint-methods)
-
-[logo还能这样玩，动态logo设计正在预示着未来？](https://mp.weixin.qq.com/s/0iz-HD2EN-v8BDQxYyiWdw)
+[我遇到的前端面试题2017](https://segmentfault.com/a/1190000011091907)
