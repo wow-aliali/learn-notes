@@ -30,6 +30,8 @@
 
 [19个 JavaScript 有用的简写技术](https://segmentfault.com/a/1190000012673854)
 
+[JavaScript 开发人员需要知道的简写技巧](https://juejin.im/post/59f697f8f265da431c6f945b)
+
 [this指向*、apply、call、bind (附加4种函数调用)](https://juejin.im/post/59bfe84351882531b730bac2)
 
 [JS中的数组操作](http://www.admin10000.com/document/17682.html)

@@ -4,7 +4,7 @@
 
 ​	[ 使用方法 ](http://www.whidy.net/visual-studio-code-settings-sync-introduction.html)
 
-​	我的同步密钥 : b8c5086191b0cb78f4ad5faaf9e20948b3c0a848
+​	[Settings Sync 错误解决](https://segmentfault.com/a/1190000011206401)​
 
 #### @ Align 代码对齐插件
 
@@ -106,7 +106,7 @@
 
 ​	安装后配置如下:
 
-```
+```json
     "emmet.syntaxProfiles": {
         "vue-html": "html",
         "vue": "html"
@@ -123,6 +123,42 @@
 ```
 
  	[配置方法](https://segmentfault.com/a/1190000008749631)
+
+#### @ power mode
+
+#### @ prettier 代码格式化工具
+
+#### @ Node Debug 2
+
+#### @ Node.js Extension Pack
+
+​	Node.js 拓展包
+
+#### @ Live Sass Compiler
+
+​	Sass自动编译、代码补全
+
+
+
+##### 在小程序中使用 Scss （↑ Live Sass Compiler插件配置）:
+
+```json
+"liveSassCompile.settings.formats": [
+    {
+        "format": "expanded",
+        "extensionName": ".wxss",
+        "savePath": null
+    }
+]
+```
+
+#### @ vscode-wechat
+
+​	小程序预览
+
+#### @ vscode wxml
+
+​	小程序 wxml 语法支持及代码片段
 
 
 
