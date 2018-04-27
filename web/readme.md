@@ -4,6 +4,8 @@
 
 [前端开发规范：命名规范、html规范、css规范、js规范](http://cherryblog.site/developing-guideline.html#more)
 
+[如何培养良好的编程实践](https://juejin.im/post/5ab7ad2bf265da23826df289)
+
 ####  
 
 #### :radio_button: HTML
@@ -24,6 +26,8 @@
 
 [团队 - CSS 样式规范](http://web.jobbole.com/91792/)
 
+[偏门的CSS样式](http://www.admin10000.com/document/17729.html)
+
 
 
 #### :radio_button: Javascript
@@ -32,21 +36,27 @@
 
 [JavaScript 开发人员需要知道的简写技巧](https://juejin.im/post/59f697f8f265da431c6f945b)
 
+[JavaScript This 的六道坎](https://mp.weixin.qq.com/s/b_SojysoGA_Z7WLJrilizg)
+
 [this指向*、apply、call、bind (附加4种函数调用)](https://juejin.im/post/59bfe84351882531b730bac2)
 
-[JS中的数组操作](http://www.admin10000.com/document/17682.html)
+[一次掌握 JavaScript ES5 到 ES8 数组内容](https://mp.weixin.qq.com/s/1uS73h2w-wQMi61c3JPDNA)
 
 [给初学者：JavaScript 中数组操作注意点](https://segmentfault.com/a/1190000012463583)
 
-[JavaScript 创建对象的七种方式](https://xxxgitone.github.io/2017/06/10/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F/)
-
-[我眼中的 JavaScript 函数式编程](http://taobaofed.org/blog/2017/03/16/javascript-functional-programing/)
-
-[一张图理解prototype、proto和constructor的三角关系](https://www.cnblogs.com/xiaohuochai/p/5721552.html)
+[很全很全的JavaScript的模块讲解](https://segmentfault.com/a/1190000012464333)
 
 [前端开发中常用的正则表达式](http://blog.csdn.net/bolg_hero/article/details/41117697)
 
-[很全很全的JavaScript的模块讲解](https://segmentfault.com/a/1190000012464333)
+JS对象：
+
+​	[JavaScript 世界万物诞生记](https://zhuanlan.zhihu.com/p/22989691)
+
+​	[一张图理解prototype、proto和constructor的三角关系](https://www.cnblogs.com/xiaohuochai/p/5721552.html)
+
+​	[JavaScript 创建对象的七种方式](https://xxxgitone.github.io/2017/06/10/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F/)
+
+​	[我眼中的 JavaScript 函数式编程](http://taobaofed.org/blog/2017/03/16/javascript-functional-programing/)
 
 Event Loop （JS执行机制）：
 
@@ -64,8 +74,6 @@ Event Loop （JS执行机制）：
 
 [总结个人使用过的3种移动端布局方法](https://segmentfault.com/a/1190000010211016)
 
-[移动端响应式的7种UI布局解析(设计)](http://www.uisdc.com/7-responsive-ui-layout)
-
 
 
 #### :radio_button: Vue.js
@@ -78,6 +86,8 @@ Event Loop （JS执行机制）：
 
 [VUE使用中踩过的坑](https://segmentfault.com/a/1190000013008420)
 
+[Vue.js最佳实践（五招让你成为Vue.js大师）](http://www.admin10000.com/document/17723.html)
+
 [(进阶) 你不知道的Vue响应式原理](https://juejin.im/post/5a734b6cf265da4e70719386)
 
 [(进阶) 剖析Vue原理&实现双向绑定MVVM](https://segmentfault.com/a/1190000006599500)
@@ -87,6 +97,8 @@ Event Loop （JS执行机制）：
 #### :radio_button: Node.js
 
 [Node.js：上传文件，服务端如何获取文件上传进度](https://juejin.im/post/5a77a46cf265da4e78327552)
+
+[2018 年了，你还是只会 npm install 吗？](https://juejin.im/post/5ab3f77df265da2392364341)
 
 
 
@@ -101,6 +113,8 @@ Event Loop （JS执行机制）：
 
 
 #### :radio_button: 调试工具
+
+[谈谈前端异常捕获与上报](https://segmentfault.com/a/1190000013983109)
 
 [Chrome 开发者工具中文文档](http://www.css88.com/doc/chrome-devtools/)
 
@@ -131,3 +145,5 @@ Event Loop （JS执行机制）：
 [面试的信心来源于过硬的基础](https://segmentfault.com/a/1190000013331105)
 
 [我遇到的前端面试题2017](https://segmentfault.com/a/1190000011091907)
+
+[2018 浅谈前端面试那些事 (题目大全)](https://segmentfault.com/a/1190000013857582)
