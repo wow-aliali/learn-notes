@@ -24,6 +24,10 @@
 
 ​	EditorConfig插件
 
+#### @ GitLens
+
+​	显示文件最近的commit和作者 , 显示当前行commit信息 
+
 #### @ Git History ( Git Log )
 
 ​	查看Git日志、历史文件或线性历史记录
@@ -92,6 +96,8 @@
 
 ​	CSS自动排序及格式化
 
+#### @ Debugger for Chrome
+
 #### @ Version Lens
 
 ​	package.json文件显示模块当前版本和最新版本
@@ -159,6 +165,26 @@
 #### @ vscode wxml
 
 ​	小程序 wxml 语法支持及代码片段
+
+#### @ quokka.js
+
+​	即时显示js和ts的运行结果
+
+#### @ Bracket Pair Colorizer and Indent Rainbow
+
+​	彩色括号 和 彩色缩进
+
+#### @ REST Client
+
+​	允许你发送HTTP请求并直接在Visual Studio代码视图响应
+
+#### @ Code Spell Checker
+
+​	代码拼写检查
+
+#### @ bookmark
+
+​	书签 标记
 
 
 
