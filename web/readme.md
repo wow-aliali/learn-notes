@@ -6,6 +6,8 @@
 
 [如何培养良好的编程实践](https://juejin.im/post/5ab7ad2bf265da23826df289)
 
+[重构 - 改善代码的各方面问题](https://juejin.im/post/5adc8e18518825672b0352a8)
+
 ####  
 
 #### :radio_button: HTML
@@ -23,6 +25,8 @@
 [前端小知识--为什么你写的height:100%不起作用？](https://segmentfault.com/a/1190000012707337)
 
 [vh,vw单位你知道多少？](https://juejin.im/entry/59b00e46f265da2491513bcc)
+
+[如何使用 Flexbox 和 CSS Grid，实现高效布局](https://mp.weixin.qq.com/s/xVoMdS4Lh8AhlnwOYvQioQ)
 
 [团队 - CSS 样式规范](http://web.jobbole.com/91792/)
 
@@ -43,6 +47,10 @@
 [一次掌握 JavaScript ES5 到 ES8 数组内容](https://mp.weixin.qq.com/s/1uS73h2w-wQMi61c3JPDNA)
 
 [给初学者：JavaScript 中数组操作注意点](https://segmentfault.com/a/1190000012463583)
+
+[你点的ES6小技巧，请查收](https://segmentfault.com/a/1190000013972464)
+
+[闭包，是真的美](https://mp.weixin.qq.com/s/w6vtbt8D3dQza3KVwmjm-A)
 
 [很全很全的JavaScript的模块讲解](https://segmentfault.com/a/1190000012464333)
 
@@ -78,6 +86,10 @@ Event Loop （JS执行机制）：
 
 #### :radio_button: Vue.js
 
+[vue中需要注意的问题总结(上)](https://juejin.im/post/5ad56d86518825556534ff4b)
+
+[Vue还有这种骚操作？浅析几个新手常常忽略的API](https://juejin.im/post/5adc99f56fb9a07abd0d3ee7)
+
 [Vue2.0 子父组件通信](https://www.jianshu.com/p/2670ca096cf8)
 
 [Vue2.0 平级组件之间通信](https://www.jianshu.com/p/d946bd7c26f4)
@@ -94,21 +106,31 @@ Event Loop （JS执行机制）：
 
 
 
+#### :radio_button: React.js
+
+[react生命周期详解](https://www.jianshu.com/p/0a90a0b57867)
+
+
+
 #### :radio_button: Node.js
+
+[MySQL命令，一篇文章替你全部搞定](https://juejin.im/post/5ae55861f265da0ba062ec71)
 
 [Node.js：上传文件，服务端如何获取文件上传进度](https://juejin.im/post/5a77a46cf265da4e78327552)
 
-[2018 年了，你还是只会 npm install 吗？](https://juejin.im/post/5ab3f77df265da2392364341)
+[Node.js进阶：cluster模块深入剖析](https://juejin.im/entry/5ad3eb536fb9a028d375db4e)
 
 
 
 #### :radio_button: 部署优化
 
+[Webpack基本架构浅析](http://blog.zxrcool.com/2018/04/19/Webpack%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84%E6%B5%85%E6%9E%90/)
+
+[借助webpack对项目进行分析优化](https://segmentfault.com/a/1190000014369413)
+
 [web前端资源文件的部署和优化 (雅虎军规)](https://juejin.im/post/59a50dc1f265da246e6e108f)
 
-[提高网页可访问性的十条建议](https://www.w3cplus.com/wai-aria/web-accessibility.html)
-
-[折腾服务器武装自己](https://juejin.im/entry/5a7d77bcf265da4e8c44fdb6)
+[Jenkins打造强大的前端自动化工作流](https://juejin.im/post/5ad1980e6fb9a028c42ea1be)
 
 
 
