@@ -165,7 +165,7 @@ export default {
 // 结论: 优先调用mixins和extends继承的父类，extends触发的优先级最高
 ```
 
-可以定义一个公共组件，与其它多个组件混合。在vue-cli项目里，可以建一个mixins.js | extends.js文件，内容如下 :
+可以定义一个公共组件，与其它多个组件混合。在vue-cli项目里，可以建一个mixins.js文件，内容如下 :
 
 ```javascript
 const errMsgMixin = {
@@ -317,6 +317,73 @@ inject: ['yeye', 'provideData']
 // 通过provideData.yeyeValue调用
 ```
 
+&nbsp;
 
+## :books: Vue-router
+
+> 项目上线前需要配置 ==mode: 'history'== ，因为默认带哈希的不会被搜索引擎爬取
+
+#### :book: 默认路由跳转
+
+```javascript
+{
+    path: '/',
+    redirect: '/login'
+}
+```
+
+#### :book: 404路由 | 未匹配路由
+
+```javascript
+{
+	path: '/404',
+	component: Error
+}
+
+const router = new Router({ .... })
+router.beforeEach((to, from, next) => {
+	if (to.matched.length === 0) {    //如果未匹配到路由
+		from.name ? next({ name:from.name }) : next('/login');   
+		//如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由
+	} else {
+		next();  //如果匹配到正确跳转
+	}
+});
+```
+
+#### :book: 路由配置
+
+```javascript
+mode: 'history',
+base: '/base/',        // path路径前始终有 /base，比如localhost:8080/base/app
+linkActiveClass: 'router-link-active',  
+// 全局配置 <router-link> 激活时的class类名
+linkExactActiveClass: 'router-link-exact-active',
+// 全局配置 <router-link> 精确激活的默认的 class
+scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+        return savedPosition    // 滚动到原先离开时的位置
+    } else {
+        return { x: 0, y: 0 }   // 滚动到顶部
+    }
+}
+// 当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，使用scrollBehavior可以自定义路由切换时页面如何滚动
+```
+
+#### :book: 路由参数传递
+
+```javascript
+
+```
+
+#### :book: 路由导航守卫
+
+```javascript
+
+```
+
+&nbsp;
+
+## :books: Vuex
 
 ==dfsg==
