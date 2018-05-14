@@ -275,7 +275,7 @@ methods: {
 (data) parentValue: 'parant'
 ```
 
-##### 3. 爷孙组件的数据传递 provide / inject
+##### ==3. 爷孙组件的数据传递 provide / inject==
 
 ```javascript
 爷:
@@ -332,26 +332,48 @@ inject: ['yeye', 'provideData']
 }
 ```
 
-#### :book: 404路由 | 未匹配路由
+#### :book: 404路由
 
 ```javascript
 {
 	path: '/404',
 	component: Error
 }
-
-const router = new Router({ .... })
-router.beforeEach((to, from, next) => {
-	if (to.matched.length === 0) {    //如果未匹配到路由
-		from.name ? next({ name:from.name }) : next('/login');   
-		//如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由
-	} else {
-		next();  //如果匹配到正确跳转
-	}
-});
 ```
 
-#### :book: 路由配置
+#### :book: 嵌套路由
+
+```javascript
+{
+    path: '/parent',
+    component: Parent,
+	children: [           // 子路由通过<router-view>显示内容
+	    {
+	        path: 'child1',
+	        component: Child1
+	    },
+	    {
+	        path: 'child2',
+	        component: Child2
+	    }
+	]
+}
+```
+
+#### :book: 路由过渡动画
+
+定义过渡动画的class放在全局SCSS里
+
+```scss
+.xxx-enter-active, .xxx-leave-active {
+    transition: ......
+}
+.xxx-enter, .xxx-leave-to {
+    .....
+}
+```
+
+#### :book: 路由配置 (选项)
 
 ```javascript
 mode: 'history',
@@ -372,18 +394,151 @@ scrollBehavior(to, from, savedPosition) {
 
 #### :book: 路由参数传递
 
+方法一（推荐） :
+
+```javascript
+{
+    path: '/app/:id',
+	props: true,      // 将path中的参数id通过props传到Todo组件内
+	component: Todo
+}
+
+<router-link to='/app/666'></router-link>
+
+// 在对应组件内 通过props:['id']接收
+// 这样就不需要 通过this.$route.params.id调用 (此法有违解耦)
+```
+
+方法二 : 
+
+```javascript
+this.$router.push({
+    name: 'groupshopadd',
+    params: {
+        groupshopType: this.groupshopType
+    }
+})
+
+// this.$route.params.groupshopType
+```
+
+#### :book: 路由钩子
+
+```javascript
+/**** 全局的路由钩子 ****/
+router.beforeEach((to, from, next) => {
+    next()
+});
+router.beforeResolve((to, from, next) => {
+    next()
+});
+router.afterEach((to, from) => {
+    
+});
+
+/**** 指定路由的路由钩子 ****/
+{
+	path: '/foo',
+	component: Foo,
+	beforeEnter: (to, from, next) => {
+		next()
+	}
+}
+
+/**** 组件内的路由钩子 ****/
+export default {
+	data() { ... },
+    beforeRouteEnter(to, from, next) {
+        // 在渲染该组件的对应路由被 confirm 前调用
+        // 这里不能访问 this , 因为此时组件实例还没被创建
+        // beforeRouteEnter一般用来通过路由参数从后台获取数据发送到对应组件 (实例在下面第3条)
+    	next()
+	},
+	beforeRouteUpdate(to, from, next) {
+        // 在当前路由改变，但是该组件被复用时调用
+        // 比如个带有动态参数的路径之间跳转的时候
+    	next()
+	},
+	beforeRouteLeave(to, from, next) {
+        // beforeRouteLeave一般用做带表单的组件路由离开/错点时提醒 (实例在下面第4条)
+    	next()
+	}
+}
+```
+
+##### ==1. 未匹配路由== :
+
+```javascript
+const router = new Router({ .... })
+router.beforeEach((to, from, next) => {
+	if (to.matched.length === 0) {    //如果未匹配到路由
+		from.name ? next({ name:from.name }) : next('/login');   
+		//如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由
+	} else {
+		next();  //如果匹配到正确跳转
+	}
+});
+```
+
+##### ==2. 登录拦截 (登录验证)== :
+
 ```javascript
 
 ```
 
-#### :book: 路由导航守卫
+##### ==3. beforeRouteEnter==
 
 ```javascript
+{
+    path: '/detail/:id',
+	props: true,      // 将path中的参数id通过props传到Detail组件内
+	component: Detail
+}
 
+<router-link to='/detail/666'></router-link>
+
+// Detail组件内
+export default {
+    data() { ... },
+    props: ['id'],
+    beforeRouteEnter(to, from, next) {
+        next(vm => {     // 在next()里通过参数vm访问该组件实例
+            axios(`/api/list?id=${vm.id}`).then(res => {
+                vm.data = res.data
+            })
+        })
+	},
+	beforeRouteUpdate(to, from, next) {
+    	next(vm => {
+            axios(`/api/list?id=${vm.id}`).then(res => {
+                vm.data = res.data
+            })
+        })
+	}
+}
+```
+
+##### ==4. beforeRouteLeave路由离开提醒==
+
+```javascript
+beforeRouteLeave(to, from, next) {
+    this.$confirm().then(() => {
+        next()
+    })
+}
+```
+
+#### 📖 路由懒加载
+
+```javascript
+{
+    path: '/login', 
+	component: () => import('@/views/login')
+}
+// 需要安装 npm i babel-plugin-syntax-dynamic-import -D
+// 然后在.babelrc的plugins里加上该插件 "syntax-dynamic-import"
 ```
 
 &nbsp;
 
 ## :books: Vuex
-
-==dfsg==
