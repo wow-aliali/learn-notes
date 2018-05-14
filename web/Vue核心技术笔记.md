@@ -542,3 +542,116 @@ beforeRouteLeave(to, from, next) {
 &nbsp;
 
 ## :books: Vuex
+
+```javascript
+/**** store/index.js 定义 ****/
+import Vuex from 'vuex'
+import Vue from 'vue'
+import state from '@/store/state.js'    // 各个选项单独配置
+import mutations from '@/store/mutations.js'
+import getters from '@/store/getters.js'
+import actions from '@/store/actions.js'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+    state,
+	mutations,
+    getters,
+    actions
+})
+
+/**** state.js 定义 ****/
+export default { count: 0 }
+
+/**** mutations.js 定义 ****/
+export default {
+    updateCount(state, num) {
+        state.count = num
+    }
+}
+
+/**** getters.js 定义 ****/
+export default {
+    newCount(state) {
+        return state.count + 10
+    }
+}
+
+/**** main.js 引入 ****/
+import store from '@/store/index.js'
+new Vue({
+    router,
+    store,
+    ....
+})
+
+/**** xxx.vue 调用 ****/
+this.$store.state.count             // 调用state，一般在computed里接收
+this.$store.commit(方法名, 参数)     // 调用mutation
+this.$store.getters.newCount        // 调用getters，一般在computed里接收
+
+/**** xxx.vue 简化调用 ****/
+import {
+    mapState,
+    mapGetters,
+    mapMutations,
+    mapActions
+} from 'vuex'
+computed: {
+    ...mapState({
+        count: (state) => state.count
+    }),
+	...mapGetters({
+        newCount: (state) => state.newCount
+    }),
+	......
+},
+methods: {
+    ...mapMutations(['updateCount']),
+	...mapActions(['updateCountAsync']),
+	......
+}
+// 使用此方法 ...扩展运算符语法需要安装 npm i babel-preset-stage-1 -D
+```
+
+#### :book: mutation和action
+
+> 官方推荐state数据只能在mutataions里修改
+
+mutation 和 action 只能传2个参数，如果想传多个数据，只能将它们封装成对象传递 :
+
+```javascript
+updateCount(state, { num, num2 }) {   // 通过解构的方式传
+    state.count = num + num2
+}
+// 调用
+this.$store.commit('updateCount', {
+    num: this.num,
+    num2: 10
+})
+```
+
+1. mutation 是同步操作，而 action 没有这个限制， 可以包含任意异步操作 
+2. action 提交的是 mutation，而不是直接变更状态，如果有异步操作那么就用 action 来提交mutation ，如下：
+
+```javascript
+updateCountAsync(store, data) {
+    setTimeout(() => {
+        store.commit('updateCount', {
+            num: data.num
+        })
+    }, data.time)
+}
+// 调用
+this.$store.dispatch('updateCountAsync', {
+    num: 5,
+    time: 2000
+})
+```
+
+#### :book: Vuex模块化
+
+
+
+#### :book: 其他一些API和配置
