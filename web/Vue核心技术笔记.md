@@ -600,10 +600,10 @@ import {
 } from 'vuex'
 computed: {
     ...mapState({
-        count: (state) => state.count
+        count: state => state.count
     }),
 	...mapGetters({
-        newCount: (state) => state.newCount
+        newCount: state => state.newCount
     }),
 	......
 },
@@ -650,8 +650,110 @@ this.$store.dispatch('updateCountAsync', {
 })
 ```
 
-#### :book: Vuex模块化
+#### :book: Vuex模块
 
+```javascript
+const store = new Vuex.Store({
+    state,
+	mutations,
+    getters,
+    actions,
+    modules: {
+        products: {
+            state: { productId: '666' },
+            getters: {
+                formatProductId(state, 调用时传的参数, rootState) {
+                    // 参数rootState为全局的state
+                    // 可通过rootState.模块名.state拿到别的模块里的state
+                    return `${state.productId} - ${rootState.count}`
+                }
+            },
+            mutations: {
+                setProductId(state, productId) {   // 参数state为该products模块下的
+                    state.productId = productId
+                }
+            }
+        },
+        cart: {
+            state: { ... }
+        }
+    }
+})
+    
+// 模块state调用
+...mapState({
+    productId: state => state.products.productId     // 注意加上模块名
+})
+// 模块mutations调用和全局的一样
+```
 
+#### :book: 热重载
 
-#### :book: 其他一些API和配置
+开发环境下，修改vuex相关代码会自动刷新整个页面，而使用热重载就无需刷新页面
+
+[热重载官方文档](https://vuex.vuejs.org/zh-cn/hot-reload.html)
+
+&nbsp;
+
+## :books: 服务端渲染 Nuxt.js
+
+[Nuxt官网](https://zh.nuxtjs.org/)
+
+[Nuxt框架实践](https://www.jianshu.com/p/56d60281c0c9)
+
+```shell
+vue init nuxt-community/koa <project-name>
+```
+
+Vue.js原来是开发SPA（单页应用）的，但是随着技术的普及，很多人想用Vue开发多页应用，并在服务端完成渲染。这时候就出现了Nuxt.js这个框架，它简化了SSR的开发难度。 如果做移动端的项目，就没必要使用这个框架。
+
+##### 什么是SSR？
+
+SSR，即服务器渲染，就是在服务器端将对Vue页面进行渲染生成html文件，然后返回给浏览器。 
+
+##### SSR优点？
+
+- SPA的HTML只有一个无实际内容的HTML和一个app.js，SSR生成的HTML是有内容的，这让搜索引擎能够索引到页面内容。
+- 更快内容到达时间：传统的SPA应用是将bundle.js从服务器获取，然后在客户端解析并挂载到dom。而SSR直接将HTML字符串传递给浏览器，大大加快了首屏加载时间。
+
+#### :book: 配置地址端口
+
+```json
+// package.json
+"config": {
+  "nuxt": {
+    "host": "127.0.0.1",
+    "port": "3030"
+  }
+}
+```
+
+#### :book: nuxt 动态路由
+
+```vue
+// 普通路由
+// views/about/index.vue
+
+<nuxt-link :to="{name: 'index'}"></nuxt-link>
+```
+
+```vue
+// 带参数的动态路由
+// views/news/index.vue
+// views/news/_newsId.vue
+
+<template>
+	<nuxt-link :to="{name: 'news-id', { params: 123456 }}"></nuxt-link>
+	<nuxt-link :to="{name: 'news-id', { params: 666 }}"></nuxt-link>
+</template>
+<script>
+  export default {
+    // 动态路由的参数校验
+   	// 如果校验方法返回的值不为 true， Nuxt.js 将自动加载显示 404 错误页面
+    validate ({params}) {
+      return /^\d+$/.test(params.id)
+    }
+  }
+</script>
+```
+
