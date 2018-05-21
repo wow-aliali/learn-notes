@@ -48,6 +48,8 @@
 
 [给初学者：JavaScript 中数组操作注意点](https://segmentfault.com/a/1190000012463583)
 
+[低门槛彻底理解JavaScript中的深拷贝和浅拷贝](https://mp.weixin.qq.com/s/FoNX_Vn1Xy0pElr3GyTgbw)
+
 [你点的ES6小技巧，请查收](https://segmentfault.com/a/1190000013972464)
 
 [闭包，是真的美](https://mp.weixin.qq.com/s/w6vtbt8D3dQza3KVwmjm-A)
@@ -138,6 +140,8 @@ Event Loop （JS执行机制）：
 
 [谈谈前端异常捕获与上报](https://segmentfault.com/a/1190000013983109)
 
+[chrome开发者工具各种骚技巧 ](https://juejin.im/post/5af53823f265da0b75282b0f)
+
 [Chrome 开发者工具中文文档](http://www.css88.com/doc/chrome-devtools/)
 
 [XSwitch - 一个解决本地开发请求转发的浏览器插件](https://mp.weixin.qq.com/s/1XAYJFzzsO3-MHiDu0upWQ)
@@ -147,6 +151,24 @@ Event Loop （JS执行机制）：
 [Charles(v4.* @Windows)的使用](https://www.jianshu.com/p/0fee626ffbb0)
 
 ####  
+
+#### 🔘 Git
+
+[🛠Git 常用操作总结 ](https://juejin.im/post/5a2cdfe26fb9a0452936b07f)
+
+[Git | 如何优♂雅地管理版本 ](https://juejin.im/post/5ae468acf265da0b71560922)
+
+
+
+#### 🔘 Weex
+
+
+
+#### 🔘 小程序
+
+[微信小程序运行流程看这篇就够了 ](https://juejin.im/post/5afd136551882542682e6ad7)
+
+
 
 #### :radio_button: 网络知识
 
