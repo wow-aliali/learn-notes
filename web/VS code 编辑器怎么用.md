@@ -186,6 +186,18 @@
 
 ​	书签 标记
 
+#### @ vue format
+
+​	vue 代码格式化
+
+#### @ console-log-snippet-javascript
+
+​	代码片段   `cons` 可以在日志中添加分隔线，如果控制台中有很多其他日志可以更轻松地找到指定日志
+
+#### @ weex
+
+​	weex语法支持
+
 
 
 

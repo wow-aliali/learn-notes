@@ -162,6 +162,8 @@ Event Loop （JS执行机制）：
 
 #### 🔘 Weex
 
+[可能是史上最全的weex踩坑攻略](https://www.jianshu.com/p/497f1a9ff33f)
+
 
 
 #### 🔘 小程序
