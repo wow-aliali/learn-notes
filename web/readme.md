@@ -54,6 +54,8 @@
 
 [闭包，是真的美](https://mp.weixin.qq.com/s/w6vtbt8D3dQza3KVwmjm-A)
 
+[大白话讲解Promise](http://www.cnblogs.com/lvdabao/p/es6-promise-1.html)
+
 [很全很全的JavaScript的模块讲解](https://segmentfault.com/a/1190000012464333)
 
 [前端开发中常用的正则表达式](http://blog.csdn.net/bolg_hero/article/details/41117697)
@@ -88,19 +90,7 @@ Event Loop （JS执行机制）：
 
 #### :radio_button: Vue.js
 
-[vue中需要注意的问题总结(上)](https://juejin.im/post/5ad56d86518825556534ff4b)
-
-[Vue还有这种骚操作？浅析几个新手常常忽略的API](https://juejin.im/post/5adc99f56fb9a07abd0d3ee7)
-
-[Vue2.0 子父组件通信](https://www.jianshu.com/p/2670ca096cf8)
-
 [Vue2.0 平级组件之间通信](https://www.jianshu.com/p/d946bd7c26f4)
-
-[vue-router路由懒加载（解决vue项目首次加载慢）](http://www.cnblogs.com/lijuntao/p/7777581.html)
-
-[VUE使用中踩过的坑](https://segmentfault.com/a/1190000013008420)
-
-[Vue.js最佳实践（五招让你成为Vue.js大师）](http://www.admin10000.com/document/17723.html)
 
 [(进阶) 你不知道的Vue响应式原理](https://juejin.im/post/5a734b6cf265da4e70719386)
 
@@ -169,6 +159,8 @@ Event Loop （JS执行机制）：
 #### 🔘 小程序
 
 [微信小程序运行流程看这篇就够了 ](https://juejin.im/post/5afd136551882542682e6ad7)
+
+[微信小程序页面间通信的5种方式](https://segmentfault.com/a/1190000008895441)
 
 
 

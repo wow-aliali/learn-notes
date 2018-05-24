@@ -64,7 +64,7 @@ watch: {
 }
 watch: {
     'obj.a': {
-        handler() {
+        handler(newVal, oldVal) {
             .....
         }
     }
@@ -86,28 +86,28 @@ watch: {
 
 ## :books: Vue的组件
 
-#### :open_book: 组件的定义 :
+#### :open_book: 组件的定义 
 
 ##### 1. 子组件向父组件传递数据
 
 ```javascript
 父 :
-<child-comp :prop-one="prop1" @handleChildChange="add"/>
+<child-comp :prop-one="prop1" @handleChildChange="handleChildChange"/>
 data() {
     return {
         prop1: 'aliali'
     }
 },
 methods: {
-    handleChildChange() {
-        this.prop1 += 1
+    handleChildChange(value) {
+        this.prop1 += value
     }
 }
 子 :
 <span @click="add"></span>
 methods: {
     add() {
-        this.$emit('handleChildChange')
+        this.$emit('handleChildChange', 1)
     }
 }
 ```
@@ -129,9 +129,7 @@ props {
 }
 ```
 
-
-
-#### :open_book: 组件的混合 / 继承 :
+#### :open_book: 组件的混合 / 继承 
 
 ```javascript
 const extend = {
@@ -140,8 +138,11 @@ const extend = {
      }
 }
 const mixin1 = {
+    data() {
+      return { a: 1 }
+    },
     created () {
-		console.log('mixin1 created')
+					console.log('mixin1 created')
     }
 }
 const mixin2 = {
@@ -151,7 +152,7 @@ const mixin2 = {
 }
 export default {
      extends: extend,           // extend调用方式，只能一个
-	 mixins: [mixin1, mixin2],  // mixin调用方式
+	   mixins: [mixin1, mixin2],  // mixin调用方式
      name: 'app',
      created () {
           console.log('created')
@@ -178,18 +179,33 @@ const errMsgMixin = {
 export {errMsgMixin}
 
 // 1. 在需要的组件内引入，调用
-	import {errMsgMixin} from '@/common/mixin.js'
+	import {errMsgMixin} from '@/common/mixins.js'
 	mixins选项: [errMsgMixin]
 // 2. 可以作为全局mixin
-	import {errMsgMixin} from '@/common/mixin.js'
+	import {errMsgMixin} from '@/common/mixins.js'
 	Vue.mixin(errMsgMixin)
 	// test.vue调用
 	this.errMsg('test')
 ```
 
+附加：混入最大的用处是把一些常用的data或者methods等抽出来，比如在我的项目中有许多个模态框，而关闭模态框的代码逻辑是一模一样的 
 
+```javascript
+var close_modal_mixin = {
+  methods: {
+    closeModal: function () {
+      this.showModal = false;  //关闭模态框
+    },
+  }
+}
 
-#### :open_book: 父子组件的表单v-model双向绑定 :
+var vm = new Vue(
+    mixins: [close_modal_mixin],
+    .......
+})
+```
+
+#### :open_book: 父子组件的表单v-model双向绑定 
 
 ```javascript
 子: 
@@ -211,7 +227,7 @@ methods: {
 
 ```javascript
 子: 
-<input type="text" @input="handleInput" :value="inputText">
+<input type="text" @change="handleInput" :value="inputText">
 model: {
 	prop: 'inputText',
 	event: 'change'
@@ -221,7 +237,7 @@ props: {
 },
 methods: {
     handleInput(e) { 
-        this.$emit('input', e.currentTarget.value)
+        this.$emit('change', e.currentTarget.value)
     }
 }
 父:
@@ -229,9 +245,33 @@ methods: {
 (data) inputText: 'aliai'
 ```
 
+#### 📖 is 特性
 
+由于dom的一些html元素对放入它里面的元素有限制，所以导致有些组件没办法放在一些标签中，比如 `<ul>` `<ol>` `<select>` `<a>` `<table>` ，所以需要增加is特性来扩展，从而使组件可以在这些受限制的html元素中使用 
 
-#### :open_book: 高级属性 :
+```vue
+<table>
+  <tr is="blog-post-row"></tr>
+</table>
+```
+
+#### 📖 keep-alive 组件
+
+`<keep-alive>` 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。和 `<transition>` 相似，`<keep-alive>` 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。
+
+当组件在 `<keep-alive>` 内被切换，它的 `activated` 和 `deactivated` 这两个生命周期钩子函数将会被对应执行。
+
+主要用于保留组件状态或避免重新渲染。 
+
+```vue
+<transition>
+  <keep-alive>
+    <component :is="view"></component>
+  </keep-alive>
+</transition>
+```
+
+#### :open_book: 高级属性 
 
 ##### 1. 插槽 slot
 
@@ -339,6 +379,12 @@ inject: ['yeye', 'provideData']
 	path: '/404',
 	component: Error
 }
+// 或者
+// 将以下路由配置放置在路由表的最末端，当路径无法匹配前面的所有路由时将会跳转至Error组件页面
+{ 
+  path: '*', 
+  component: Error 
+}
 ```
 
 #### :book: 嵌套路由
@@ -347,7 +393,7 @@ inject: ['yeye', 'provideData']
 {
     path: '/parent',
     component: Parent,
-	children: [           // 子路由通过<router-view>显示内容
+	  children: [           // 子路由通过<router-view>显示内容
 	    {
 	        path: 'child1',
 	        component: Child1
@@ -398,7 +444,7 @@ scrollBehavior(to, from, savedPosition) {
 
 ```javascript
 {
-    path: '/app/:id',
+  path: '/app/:id',
 	props: true,      // 将path中的参数id通过props传到Todo组件内
 	component: Todo
 }
@@ -426,13 +472,13 @@ this.$router.push({
 
 ```javascript
 /**** 全局的路由钩子 ****/
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {   // 路由跳转前的拦截器
     next()
 });
 router.beforeResolve((to, from, next) => {
     next()
 });
-router.afterEach((to, from) => {
+router.afterEach((to, from) => {   // 路由跳转后的拦截器
     
 });
 
@@ -448,19 +494,19 @@ router.afterEach((to, from) => {
 /**** 组件内的路由钩子 ****/
 export default {
 	data() { ... },
-    beforeRouteEnter(to, from, next) {
-        // 在渲染该组件的对应路由被 confirm 前调用
-        // 这里不能访问 this , 因为此时组件实例还没被创建
-        // beforeRouteEnter一般用来通过路由参数从后台获取数据发送到对应组件 (实例在下面第3条)
+  beforeRouteEnter(to, from, next) {
+      // 在渲染该组件的对应路由被 confirm 前调用
+      // 这里不能访问 this , 因为此时组件实例还没被创建
+      // beforeRouteEnter一般用来通过路由参数从后台获取数据发送到对应组件 (实例在下面第3条)
     	next()
 	},
 	beforeRouteUpdate(to, from, next) {
-        // 在当前路由改变，但是该组件被复用时调用
-        // 比如个带有动态参数的路径之间跳转的时候
+      // 在当前路由改变，但是该组件被复用时调用
+      // 比如个带有动态参数的路径之间跳转的时候
     	next()
 	},
 	beforeRouteLeave(to, from, next) {
-        // beforeRouteLeave一般用做带表单的组件路由离开/错点时提醒 (实例在下面第4条)
+      // beforeRouteLeave一般用做带表单的组件路由离开/错点时提醒 (实例在下面第4条)
     	next()
 	}
 }
@@ -490,7 +536,7 @@ router.beforeEach((to, from, next) => {
 
 ```javascript
 {
-    path: '/detail/:id',
+  path: '/detail/:id',
 	props: true,      // 将path中的参数id通过props传到Detail组件内
 	component: Detail
 }
@@ -499,10 +545,10 @@ router.beforeEach((to, from, next) => {
 
 // Detail组件内
 export default {
-    data() { ... },
-    props: ['id'],
-    beforeRouteEnter(to, from, next) {
-        next(vm => {     // 在next()里通过参数vm访问该组件实例
+	data() { ... },
+	props: ['id'],
+	beforeRouteEnter(to, from, next) {
+		next(vm => {     // 在next()里通过参数vm访问该组件实例
             axios(`/api/list?id=${vm.id}`).then(res => {
                 vm.data = res.data
             })
@@ -520,19 +566,56 @@ export default {
 
 ##### ==4. beforeRouteLeave路由离开提醒==
 
+为了防止用户失误点错关闭按钮等等，导致没有保存已输入的信息(关键信息)
+
 ```javascript
 beforeRouteLeave(to, from, next) {
-    this.$confirm().then(() => {
-        next()
-    })
+    if(用户已经输入信息){
+        // 出现弹窗提醒保存草稿，或者自动后台为其保存
+    } else {
+        next(true);  // 用户离开
+    }
 }
+```
+
+##### ==5. 路由加载时动画== 
+
+```javascript
+// 在状态管理中定义一个路由loading标志
+const app = {
+  state: {
+    routerLoading: false, //路由的loading过渡
+  },
+  mutations: {
+    //修改路由loading状态
+    UPDATE_ROUTER_LOADING(state, status) {
+      state.routerLoading = status
+    }
+  }
+}
+
+// 在路由拦截器中修改loading状态
+router.beforeEach((to, from, next) => {
+  store.commit('UPDATE_ROUTER_LOADING', true); // 展示路由加载时动画
+});
+router.afterEach(to => {
+  store.commit('UPDATE_ROUTER_LOADING', false);
+});
+router.onError(err => {
+  console.error(err); // for bug
+  store.commit('UPDATE_ROUTER_LOADING', false);
+});
+
+// 在router-view定义loading动画
+// element-ui提供了v-loading指令可以直接使用
+<router-view v-loading="$store.getters.routerLoading"></router-view>
 ```
 
 #### 📖 路由懒加载
 
 ```javascript
 {
-    path: '/login', 
+  path: '/login', 
 	component: () => import('@/views/login')
 }
 // 需要安装 npm i babel-plugin-syntax-dynamic-import -D
@@ -556,25 +639,25 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state,
-	mutations,
+	  mutations,
     getters,
     actions
 })
 
 /**** state.js 定义 ****/
-export default { count: 0 }
+export default { g_count: 0 }
 
 /**** mutations.js 定义 ****/
 export default {
-    updateCount(state, num) {
-        state.count = num
+    UPDATE_COUNT(state, num) {  // mutations方法名全大写
+        state.g_count = num
     }
 }
 
 /**** getters.js 定义 ****/
 export default {
-    newCount(state) {
-        return state.count + 10
+    g_newCount(state) {
+        return state.g_count + 10
     }
 }
 
@@ -587,9 +670,9 @@ new Vue({
 })
 
 /**** xxx.vue 调用 ****/
-this.$store.state.count             // 调用state，一般在computed里接收
+this.$store.state.g_count             // 调用state，一般在computed里接收
 this.$store.commit(方法名, 参数)     // 调用mutation
-this.$store.getters.newCount        // 调用getters，一般在computed里接收
+this.$store.getters.g_newCount        // 调用getters，一般在computed里接收
 
 /**** xxx.vue 简化调用 ****/
 import {
@@ -600,17 +683,17 @@ import {
 } from 'vuex'
 computed: {
     ...mapState({
-        count: state => state.count
+        count: state => state.g_count
     }),
-	...mapGetters({
-        newCount: state => state.newCount
+	  ...mapGetters({
+        newCount: state => state.g_newCount
     }),
-	......
+	  ......
 },
 methods: {
-    ...mapMutations(['updateCount']),
-	...mapActions(['updateCountAsync']),
-	......
+    ...mapMutations(['UPDATE_COUNT']),
+	  ...mapActions(['UPDATE_COUNT_ASYNC']),
+	  ......
 }
 // 使用此方法 ...扩展运算符语法需要安装 npm i babel-preset-stage-1 -D
 ```
@@ -622,11 +705,11 @@ methods: {
 mutation 和 action 只能传2个参数，如果想传多个数据，只能将它们封装成对象传递 :
 
 ```javascript
-updateCount(state, { num, num2 }) {   // 通过解构的方式传
-    state.count = num + num2
+UPDATE_COUNT(state, { num, num2 }) {   // 通过解构的方式传
+    state.g_count = num + num2
 }
 // 调用
-this.$store.commit('updateCount', {
+this.$store.commit('UPDATE_COUNT', {
     num: this.num,
     num2: 10
 })
@@ -636,15 +719,15 @@ this.$store.commit('updateCount', {
 2. action 提交的是 mutation，而不是直接变更状态，如果有异步操作那么就用 action 来提交mutation ，如下：
 
 ```javascript
-updateCountAsync(store, data) {
+UPDATE_COUNT_ASYNC(store, data) {
     setTimeout(() => {
-        store.commit('updateCount', {
+        store.commit('UPDATE_COUNT', {
             num: data.num
         })
     }, data.time)
 }
 // 调用
-this.$store.dispatch('updateCountAsync', {
+this.$store.dispatch('UPDATE_COUNT_ASYNC', {
     num: 5,
     time: 2000
 })
@@ -655,22 +738,22 @@ this.$store.dispatch('updateCountAsync', {
 ```javascript
 const store = new Vuex.Store({
     state,
-	mutations,
+	  mutations,
     getters,
     actions,
     modules: {
         products: {
-            state: { productId: '666' },
+            state: { g_productId: '666' },
             getters: {
-                formatProductId(state, 调用时传的参数, rootState) {
+                g_formatProductId(state, 调用时传的参数, rootState) {
                     // 参数rootState为全局的state
                     // 可通过rootState.模块名.state拿到别的模块里的state
-                    return `${state.productId} - ${rootState.count}`
+                    return `${state.g_productId} - ${rootState.g_count}`
                 }
             },
             mutations: {
-                setProductId(state, productId) {   // 参数state为该products模块下的
-                    state.productId = productId
+                SET_PRODUCT_ID(state, productId) {   // 参数state为该products模块下的
+                    state.g_productId = productId
                 }
             }
         },
@@ -682,7 +765,7 @@ const store = new Vuex.Store({
     
 // 模块state调用
 ...mapState({
-    productId: state => state.products.productId     // 注意加上模块名
+    g_productId: state => state.products.g_productId     // 注意加上模块名
 })
 // 模块mutations调用和全局的一样
 ```
@@ -757,3 +840,50 @@ SSR，即服务器渲染，就是在服务器端将对Vue页面进行渲染生�
 </script>
 ```
 
+&nbsp;
+
+## 📚 一些小知识
+
+#### :open_book:  vue本地代理配置 解决跨域问题,仅限于开发环境
+
+```javascript
+// 比方说你要访问 http://192.168.1.xxx:8888/backEnd/paper这个接口
+// 配置config.js下面proxyTable对象
+proxyTable: {
+		'/backEnd':{
+				target: 'http://192.168.3.200:8888', // 目标接口域名有端口可以把端口也写上
+                                              // 或者prot本地起服务端口与服务端统一
+         changeOrigin: true,
+     }
+},
+// 发送request请求
+axios.get('/backEnd/page')  // 按代理配置 匹配到/backEnd就代理到目标target地址
+    .then((res) => {
+				....
+		})
+```
+
+#### :book:  路由变化页面数据不刷新问题
+
+出现这种情况是因为依赖路由的params参数获取写在created生命周期里面，因为相同路由二次甚至多次加载的关系 没有达到监听，退出页面再进入另一个文章页面并不会运行created组件生命周期，导致文章数据还是第一次进入时的数据
+
+解决方法：watch监听路由是否变化
+
+```javascript
+watch: {
+ // 方法1
+  '$route' (to, from) {   //监听路由是否变化
+    if (this.$route.params.articleId) {    // 判断条件1  判断传递值的变化
+      //获取文章数据
+    }
+  }
+  //方法2
+  '$route' (to, from) {
+    if (to.path == "/page") {    // 判断条件2  监听路由名 监听你从什么路由跳转过来的
+       this.message = this.$route.query.msg
+    }
+  }
+}
+```
+
+或者使用 `this.$nextTick` 试下
